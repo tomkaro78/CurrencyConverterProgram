@@ -1,5 +1,6 @@
 public class CoinFactory {
 
+    //will generate new coin object
     public static Coin getCoinInstance(Coins coin) {
         switch (coin) {
             case ILS:
@@ -7,6 +8,9 @@ public class CoinFactory {
 
             case USD:
                 return new USD();
+
+            case EUR:
+                return new EUR();
 
         }
         return null;

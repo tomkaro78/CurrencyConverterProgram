@@ -1,68 +1,88 @@
 
 
-import org.testng.annotations.Test;
-
+import java.io.*;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CalculateTest {
 
-    private static ICalculate usd;
-    private static ICalculate ils;
-    private static double input;
+//    private static ICalculate usd;
+//    private static ICalculate ils;
+//    private static double input;
 
-    public static void test() {
+    //this method will start conversions
+    public static void RunConversions() throws IOException {
 
-        String shouldContinue = "yes";
+        ArrayList<Double> myList = new ArrayList<Double>();
 
+        String shouldContinue = "";
         Scanner s2 = new Scanner(System.in);
         int choice = 0;
         System.out.println("Welcome to currency converter");
 
-        do {
-            System.out.println("Please choose an option (1/2)");
-            System.out.println("1. Dollars to Shekels");
-            System.out.println("2. Shekels to Dollars");
-            choice = s2.nextInt();
-            if (choice < 1 || choice > 2) {
-                System.out.println("Invalid choice, please try again");
-                continue;
-            }
+       try {
+           do {
+               System.out.println("Please choose an option (1/2)");
+               System.out.println("1. Dollars to Shekels");
+               System.out.println("2. Shekels to Dollars");
+               System.out.println("3. Shekels to Euro");
 
-            if (choice == 1) {
-                System.out.println("Please enter an amount to convert");
-                Double input = s2.nextDouble();
-                ICalculate usd = (ICalculate) CoinFactory.getCoinInstance(Coins.ILS);
-                System.out.println(usd.calculate(input));
-            } else if (choice == 2) {
-                System.out.println("Please enter an amount to convert");
-                Double input = s2.nextDouble();
-                ICalculate ils = (ICalculate) CoinFactory.getCoinInstance(Coins.USD);
-                System.out.println(ils.calculate(input));
-            }
-            System.out.println("Start over? choose Y/N");
-            shouldContinue = s2.next();
+               choice = s2.nextInt();
 
-            ArrayList<Double> myList = new ArrayList<Double>();
-            myList.add(CoinFactory.getCoinInstance(Coins.USD).calculate(s2.nextDouble()));
-            myList.add(CoinFactory.getCoinInstance(Coins.ILS).calculate(s2.nextDouble()));
+               if (choice < 1 || choice > 3) {
+                   System.out.println("Invalid choice, please try again");
+                   continue;
+               }
 
-        } while (shouldContinue.equalsIgnoreCase("Y"));
+               if (choice == 1) {
+                   System.out.println("Please enter an amount to convert");
+
+                   Double input = s2.nextDouble();
+                   ICalculate usd = (ICalculate) CoinFactory.getCoinInstance(Coins.ILS);
+                   System.out.printf("%s - %s %s %n" ,usd.calculate(input), input ,"USD to ILS");
+
+                   myList.add(usd.calculate(input));
+
+               } else if (choice == 2) {
+                   System.out.println("Please enter an amount to convert");
+
+                   Double input = s2.nextDouble();
+                   ICalculate ils = (ICalculate) CoinFactory.getCoinInstance(Coins.USD);
+                   System.out.printf("%s - %s %s %n " ,ils.calculate(input), input ,"ILS to USD");
+
+                   myList.add(ils.calculate(input));
+               }else if (choice == 3) {
+                   System.out.println("Please enter an amount to convert");
+
+                   Double input = s2.nextDouble();
+                   ICalculate ils = (ICalculate) CoinFactory.getCoinInstance(Coins.EUR);
+                   System.out.printf("%s - %s %s %n " ,ils.calculate(input), input ,"ILS to EUR");
+               }
+               System.out.println("Start over? choose Y/N");
+               shouldContinue = s2.next();
+
+
+           } while (shouldContinue.equalsIgnoreCase("Y"));
+       } catch (Exception e) {
+           e.printStackTrace();
+       }
+
+        System.out.println("Thanks for using our currency converter");
+        for (int i = 0; i < myList.size(); i++) {
+            System.out.println(myList.get(i));
+        }
+
+        //FileWriter fw = new FileWriter("C:\\Users\\LENOVO\\Desktop\\logs\\aaa.txt");
+      
+
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
 
-        test();
-//        ArrayList<Double> myList = new ArrayList<Double>();
-//        myList.add(usd.calculate(input));
-//        myList.add(ils.calculate(input));
-//
-//        for (int i =0; i < myList.size(); i++){
-//            System.out.println(myList.get(i));
-//        }
+       RunConversions();
 
-    }
+
+}
 }
 
