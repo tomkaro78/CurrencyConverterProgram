@@ -10,6 +10,6 @@ public class EUR extends Coin {
 
     @Override
     public double calculate(double input) {
-        return input * getValue();
+        return input * (1 / getValue());
     }
 }
