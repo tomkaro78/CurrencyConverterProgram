@@ -7,12 +7,8 @@ import java.util.Scanner;
 
 public class CalculateTest {
 
-//    private static ICalculate usd;
-//    private static ICalculate ils;
-//    private static double input;
 
     //this method will start conversions
-
     public static void RunConversions() throws InputMismatchException {
 
         ArrayList<Double> myList = new ArrayList<Double>();
@@ -48,7 +44,7 @@ public class CalculateTest {
 
                     myList.add(usd.calculate(input));
                     //challenge
-                   Result result = new Result( (usd.calculate(input)), "USD to ILS");
+                    Result result = new Result((usd.calculate(input)), "USD to ILS");
                     myStringList.add(String.valueOf(usd.calculate(input)) + ", USD to ILS");
 
                 }
@@ -62,7 +58,7 @@ public class CalculateTest {
 
                     myList.add(ils.calculate(input));
                     //challenge
-                    Result result = new Result( (ils.calculate(input)), "ILS to USD");
+                    Result result = new Result((ils.calculate(input)), "ILS to USD");
                     myStringList.add(String.valueOf(ils.calculate(input)) + ", ILS to USD");
 
                 } else if (choice == 3) {
@@ -74,7 +70,7 @@ public class CalculateTest {
 
                     myList.add(eur.calculate(input));
                     //challenge
-                    Result result = new Result( (eur.calculate(input)), "ILS to EUR");
+                    Result result = new Result((eur.calculate(input)), "ILS to EUR");
                     myStringList.add(String.valueOf(eur.calculate(input)) + ", ILS to EUR");
                 }
             } catch (InputMismatchException e) {
@@ -120,7 +116,6 @@ public class CalculateTest {
 
 
         RunConversions();
-
 
 
     }
