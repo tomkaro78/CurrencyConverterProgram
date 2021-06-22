@@ -17,6 +17,8 @@ public class CalculateTest {
 
         ArrayList<Double> myList = new ArrayList<Double>();
 
+        ArrayList<String> myStringList = new ArrayList<String>();
+
         String shouldContinue = "y";
         Scanner s2 = new Scanner(System.in);
         int choice = 0;
@@ -45,6 +47,9 @@ public class CalculateTest {
                     System.out.printf("%s - %s %s %n", usd.calculate(input), input, "USD to ILS");
 
                     myList.add(usd.calculate(input));
+                    //challenge
+                   Result result = new Result( (usd.calculate(input)), "USD to ILS");
+                    myStringList.add(String.valueOf(usd.calculate(input)) + ", USD to ILS");
 
                 }
                 if (choice == 2) {
@@ -56,13 +61,21 @@ public class CalculateTest {
                     System.out.printf("%s - %s %s %n ", ils.calculate(input), input, "ILS to USD");
 
                     myList.add(ils.calculate(input));
+                    //challenge
+                    Result result = new Result( (ils.calculate(input)), "ILS to USD");
+                    myStringList.add(String.valueOf(ils.calculate(input)) + ", ILS to USD");
+
                 } else if (choice == 3) {
                     System.out.println("Please enter an amount to convert");
 
                     Double input = s2.nextDouble();
                     ICalculate eur = (ICalculate) CoinFactory.getCoinInstance(Coins.EUR);
                     System.out.printf("%s - %s %s %n ", eur.calculate(input), input, "ILS to EUR");
+
                     myList.add(eur.calculate(input));
+                    //challenge
+                    Result result = new Result( (eur.calculate(input)), "ILS to EUR");
+                    myStringList.add(String.valueOf(eur.calculate(input)) + ", ILS to EUR");
                 }
             } catch (InputMismatchException e) {
                 e.printStackTrace();
@@ -81,6 +94,9 @@ public class CalculateTest {
 
         for (int i = 0; i < myList.size(); i++) {
             System.out.println(myList.get(i));
+        }
+        for (int i = 0; i < myStringList.size(); i++) {
+            System.out.println(myStringList.get(i));
         }
 
 
