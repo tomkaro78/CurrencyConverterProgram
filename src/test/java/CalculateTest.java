@@ -9,7 +9,7 @@ public class CalculateTest {
 
 
     //this method will start conversions
-    public static void RunConversions() throws InputMismatchException {
+    public static void RunConversions() throws Exception {
 
         ArrayList<Double> myList = new ArrayList<Double>();
 
@@ -81,6 +81,14 @@ public class CalculateTest {
 
             System.out.println("Start over? choose Y/N");
             shouldContinue = s2.next();
+            if (shouldContinue.equalsIgnoreCase("y")) {
+              continue;
+            }if (shouldContinue.equalsIgnoreCase("n")) {
+                continue;
+            }else {
+                System.out.println("wrong");
+                throw new Exception();
+            }
 
 
         } while (shouldContinue.equalsIgnoreCase("Y"));
@@ -112,7 +120,7 @@ public class CalculateTest {
         }
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
 
 
         RunConversions();
